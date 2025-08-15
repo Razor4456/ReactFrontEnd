@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useAddStuffMutation } from "../../service/stuffservice/stuffapi";
+import {StuffForm,StuffInput,StuffButton,StuffMessage} from "./stuff-add-styles"
 
 function AddStuff() {
     const [nama_barang,setNamaBarang] = useState('');
@@ -25,32 +26,52 @@ function AddStuff() {
     };
 
     return (
-        <form onSubmit={AddStuffHandler}>
+        <StuffForm onSubmit={AddStuffHandler}>
             <h2>Tambah Barang</h2>
-            <input
+            <StuffInput
             type="text"
             placeholder="Nama Barang"
             value={nama_barang}
             onChange={(e) => setNamaBarang(e.target.value)}
+            required
             />
 
-            <input
-            type="number"
+            <StuffInput
+            type="text"
             placeholder="Jumlah barang"
+            inputMode="numeric"
+            pattern="[0-9]*"
             value={jumlah_barang}
-            onChange={(e) => setJumlahBarang(e.target.value)}
+            onChange={(e => {
+                const value = e.target.value;
+                if(/^\d*$/.test(value)){
+                    setJumlahBarang(value);
+                }
+            })}
             required 
             />
 
-            <input
-            type="number"
+            <StuffInput
+            type="text"
             placeholder="Harga"
+            inputMode="numeric"
+            pattern="[0-9]*"
             value={harga}
-            onChange={(e) => setHaBarang(e.target.value)}
+            onChange={(e => {
+                const value = e.target.value;
+                if(/^\d*$/.test(value)){
+                    setHaBarang(value);
+                }
+            })}
             required 
             />
+            <StuffButton type="submit" disabled={isLoading}>
+                {isLoading ? 'Menambahkan...' : 'Tambah Barang'}
+            </StuffButton>
 
-        </form>
+            {isSuccess && <StuffMessage> Barang berhasil ditambahkan </StuffMessage>}
+            {error && <StuffMessage> gagal : {error.message} </StuffMessage>}
+        </StuffForm>
     );
 }
 
