@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useAddStuffMutation } from "../../service/stuffservice/stuffapi";
-import {StuffForm,StuffInput,StuffButton,StuffMessage} from "./stuff-add-styles"
+import Stuffaddstyles from './stuffadd.module.scss'
 
 function AddStuff() {
     const [nama_barang,setNamaBarang] = useState('');
@@ -26,9 +26,10 @@ function AddStuff() {
     };
 
     return (
-        <StuffForm onSubmit={AddStuffHandler}>
-            <h2>Tambah Barang</h2>
-            <StuffInput
+        <form className={`${Stuffaddstyles.StuffForm}`} onSubmit={AddStuffHandler}>
+            <h2 className={`${Stuffaddstyles.Stufftitle}`}>Tambah Barang</h2>
+            <input
+            className={`${Stuffaddstyles.StuffInput}`}
             type="text"
             placeholder="Nama Barang"
             value={nama_barang}
@@ -36,7 +37,8 @@ function AddStuff() {
             required
             />
 
-            <StuffInput
+            <input
+            className={`${Stuffaddstyles.StuffInput}`}
             type="text"
             placeholder="Jumlah barang"
             inputMode="numeric"
@@ -51,7 +53,8 @@ function AddStuff() {
             required 
             />
 
-            <StuffInput
+            <input
+            className={`${Stuffaddstyles.StuffInput}`}
             type="text"
             placeholder="Harga"
             inputMode="numeric"
@@ -65,13 +68,15 @@ function AddStuff() {
             })}
             required 
             />
-            <StuffButton type="submit" disabled={isLoading}>
+            <div className={`${Stuffaddstyles.parent}`}>
+            <button className={`${Stuffaddstyles.StuffButton}`} type="submit" disabled={isLoading}>
                 {isLoading ? 'Menambahkan...' : 'Tambah Barang'}
-            </StuffButton>
+            </button>
+            </div>
 
-            {isSuccess && <StuffMessage> Barang berhasil ditambahkan </StuffMessage>}
-            {error && <StuffMessage> gagal : {error.message} </StuffMessage>}
-        </StuffForm>
+            {isSuccess && <p className={`${Stuffaddstyles.StuffMessage}`}> Barang berhasil ditambahkan </p>}
+            {error && <p className={`${Stuffaddstyles.StuffMessage}`}> gagal : {error.message} </p>}
+        </form>
     );
 }
 
