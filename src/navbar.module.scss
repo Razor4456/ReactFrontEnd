@@ -1,33 +1,47 @@
+.NavForm {
+    padding: 2rem;
+    width: 50%;
+    margin: 0;
+    position: absolute;
+    top: 2%;
+    left: 0;
+    background-color: transparent;
+
+
+}
 .navbar {
-  background-color: #c2b6b6;
-  padding: 1rem;
-  width: 9%;
-  height: 100%;
-  position: fixed;
-  top: 0;
-  left: 0;
+    padding: 1rem;
+    width: 7%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #4B4E6D;
+
 }
 
-.ul{
-    display: flex;
+.Urllist{
     gap: 1rem;
     list-style: none;
     margin: 0;
     padding: 0;
+    flex-direction: column;
 }
 
-p {
-text-align: left;
-    a{
-        text-align: left;
-        text-decoration: none;
-        color:#333;
-        font-weight: bold;
-        
-        
+.TextUrl {
+    text-align: left;
+    padding: 0.3rem 0;
+    color: red;
+}
 
-        &:hover {
-            color: #0051ff;
-        }
+.UrlLink{
+    display: block;
+    text-align: left;
+    text-decoration: none;
+    color:#333;
+    font-weight: bold;
+    
+    &:hover {
+        color: #0051ff;
     }
 }

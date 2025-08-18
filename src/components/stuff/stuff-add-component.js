@@ -26,10 +26,10 @@ function AddStuff() {
     };
 
     return (
-        <form className={`${Stuffaddstyles.StuffForm}`} onSubmit={AddStuffHandler}>
-            <h2 className={`${Stuffaddstyles.Stufftitle}`}>Tambah Barang</h2>
+        <form className={Stuffaddstyles.StuffForm} onSubmit={AddStuffHandler}>
+            <h2 className={Stuffaddstyles.Stufftitle}>Tambah Barang</h2>
             <input
-            className={`${Stuffaddstyles.StuffInput}`}
+            className={Stuffaddstyles.StuffInput}
             type="text"
             placeholder="Nama Barang"
             value={nama_barang}
@@ -38,7 +38,7 @@ function AddStuff() {
             />
 
             <input
-            className={`${Stuffaddstyles.StuffInput}`}
+            className={Stuffaddstyles.StuffInput}
             type="text"
             placeholder="Jumlah barang"
             inputMode="numeric"
@@ -54,7 +54,7 @@ function AddStuff() {
             />
 
             <input
-            className={`${Stuffaddstyles.StuffInput}`}
+            className={Stuffaddstyles.StuffInput}
             type="text"
             placeholder="Harga"
             inputMode="numeric"
@@ -68,14 +68,14 @@ function AddStuff() {
             })}
             required 
             />
-            <div className={`${Stuffaddstyles.parent}`}>
-            <button className={`${Stuffaddstyles.StuffButton}`} type="submit" disabled={isLoading}>
+            <div className={Stuffaddstyles.parent}>
+            <button className={Stuffaddstyles.StuffButton} type="submit" disabled={isLoading}>
                 {isLoading ? 'Menambahkan...' : 'Tambah Barang'}
             </button>
             </div>
 
-            {isSuccess && <p className={`${Stuffaddstyles.StuffMessage}`}> Barang berhasil ditambahkan </p>}
-            {error && <p className={`${Stuffaddstyles.StuffMessage}`}> gagal : {error.message} </p>}
+            {isSuccess && <p className={Stuffaddstyles.StuffMessage}> Barang berhasil ditambahkan </p>}
+            {error && <p className={Stuffaddstyles.StuffMessage}> gagal : {error.message} </p>}
         </form>
     );
 }

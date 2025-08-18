@@ -1,6 +1,7 @@
+import home from "./home.module.scss"
 const HomeComponent = () => {
     return (
-        <p> This is Home Page</p>
+        <p className={home.hometext}> This is Home Page</p>
     )
 }
 

@@ -1,7 +1,12 @@
+import { useEffect } from 'react';
 import { useGetStuffQuery } from '../../service/stuffservice/stuffapi';
 
 function StuffList() {
-  const { data, error, isLoading } = useGetStuffQuery();
+  const { data, error, isLoading, refetch } = useGetStuffQuery();
+
+  useEffect(() => {
+    refetch();
+  },[refetch]);
 
   if (isLoading) return <p>Loading...</p>;
   if (error) return <p>Error: {error.message}</p>;
