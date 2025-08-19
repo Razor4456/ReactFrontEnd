@@ -1,26 +1,27 @@
 .NavForm {
     padding: 2rem;
-    width: 50%;
+    width: 100%;
     margin: 0;
     position: absolute;
-    top: 2%;
+    top: 4%;
     left: 0;
     background-color: transparent;
-
-
+    // background-color: red;
 }
 .navbar {
-    padding: 1rem;
-    width: 7%;
-    height: 100%;
-    position: fixed;
-    top: 0;
-    left: 0;
-    background-color: #4B4E6D;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 200px;
+  padding: 1rem;
+  background-color: #ffffff;
+  z-index: 1000;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
 
 }
 
 .Urllist{
+    display: flex;
     gap: 1rem;
     list-style: none;
     margin: 0;
@@ -29,19 +30,39 @@
 }
 
 .TextUrl {
-    text-align: left;
+    text-align: center;
     padding: 0.3rem 0;
-    color: red;
+    font-family: 'Arial', sans-serif;
 }
 
 .UrlLink{
+    text-align: center;
     display: block;
-    text-align: left;
-    text-decoration: none;
-    color:#333;
     font-weight: bold;
-    
-    &:hover {
-        color: #0051ff;
-    }
+    font-family: 'Arial', sans-serif;
 }
+
+.FooterText{
+    text-align: center;
+    padding: 1rem 0;
+    background-color: #ff0202;
+    border-top: 1px solid #ddd;
+    width: 100%;
+    margin-left: 13rem;
+}
+
+.Layoutstyle{
+  border-radius: 8;
+  overflow: 'hidden';
+  width: 'calc(50% - 8px)';
+  max-width: 'calc(50% - 8px)';
+}
+
+.ContentStyle{
+  text-align: 'center';
+  min-height: 825px;
+  line-height: 20px;
+  color: '#fff';
+  background-color: #ffffff;
+}
+
