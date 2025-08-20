@@ -5,13 +5,24 @@ export const stuffApi = createApi({
     baseQuery: fetchBaseQuery({baseUrl: 'http://localhost:8080/FoundationV1/'}),
     endpoints: (builder) => ({
         getStuff: builder.query({
-            query:() => 'GetStuff',
+            query:(GetStuff) => ({
+                url: 'GetStuff',
+                method: 'GET',
+                body: GetStuff
+            }),
         }),
         addStuff:builder.mutation({
             query: (newStuff) => ({
                 url: 'AddStuff',
                 method: 'POST',
                 body: newStuff
+            }),
+        }),
+        EditStuff:builder.mutation({
+            query: (editStuff) => ({
+                url: 'EditStuff',
+                method: 'PUT',
+                body: editStuff
             }),
         }),
     }),

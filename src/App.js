@@ -16,7 +16,7 @@ function App() {
       <Layout className={NavStyle.Layoutstyle}>
 
         <Header>
-          <h1> App Test </h1>
+          <h1 className={NavStyle.Textheader}> APP TEST </h1>
         </Header>
 
       <Layout>

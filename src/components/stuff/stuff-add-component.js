@@ -1,42 +1,59 @@
 import React, { useState } from "react";
 import { useAddStuffMutation } from "../../service/stuffservice/stuffapi";
 import Stuffaddstyles from './stuffadd.module.scss'
+import {Alert} from 'antd';
 
 function AddStuff() {
     const [nama_barang,setNamaBarang] = useState('');
     const [jumlah_barang,setJumlahBarang] = useState('');
     const [harga,setHaBarang] = useState('');
-    const [addStuff,{isLoading, isSuccess, error}] = useAddStuffMutation('');
+    const [addStuff,{isLoading}] = useAddStuffMutation('');
+    const [successMsg,setSuccessMsg] = useState('');
+    const [errorMsg,setErrorMsg] = useState('');
 
     const AddStuffHandler = async (e) => {
         e.preventDefault();
+        setSuccessMsg('');
+        setErrorMsg('');
+
         try{
             await addStuff({
                 nama_barang,
                 jumlah_barang: parseInt(jumlah_barang),
                 harga: parseInt(harga),
-            });
+            }).unwrap();
+
+
+            setSuccessMsg('Barang Berhasil Di tambahkan')
             console.log('Barang')
             setNamaBarang('');
             setJumlahBarang('');
             setHaBarang('');
         } catch (err) {
-            console.error('Gagal Menambahkan Barang :', err);
+            console.log("message",'Gagal Menambahkan Barang');
+            setErrorMsg('Gagal menambahkan barang')
+            // console.error('Gagal Menambahkan barang');
         }
     };
 
     return (
+        <>
+        {successMsg && <Alert className = {Stuffaddstyles.smallAlert} message = {successMsg} type = "success" />}
+        {errorMsg && <Alert className = {Stuffaddstyles.smallAlert} message = {errorMsg} type = "error" />}
+        
+        <h2 className={Stuffaddstyles.Stufftitle}>Tambah Barang</h2>
+
         <form className={Stuffaddstyles.StuffForm} onSubmit={AddStuffHandler}>
-            <h2 className={Stuffaddstyles.Stufftitle}>Tambah Barang</h2>
+            <p>Nama Barang</p>
             <input
             className={Stuffaddstyles.StuffInput}
             type="text"
             placeholder="Nama Barang"
             value={nama_barang}
             onChange={(e) => setNamaBarang(e.target.value)}
-            required
             />
 
+            <p>Jumlah Barang</p>
             <input
             className={Stuffaddstyles.StuffInput}
             type="text"
@@ -50,9 +67,9 @@ function AddStuff() {
                     setJumlahBarang(value);
                 }
             })}
-            required 
             />
 
+            <p>Harga Barang</p>
             <input
             className={Stuffaddstyles.StuffInput}
             type="text"
@@ -66,17 +83,14 @@ function AddStuff() {
                     setHaBarang(value);
                 }
             })}
-            required 
             />
             <div className={Stuffaddstyles.parent}>
             <button className={Stuffaddstyles.StuffButton} type="submit" disabled={isLoading}>
                 {isLoading ? 'Menambahkan...' : 'Tambah Barang'}
             </button>
             </div>
-
-            {isSuccess && <p className={Stuffaddstyles.StuffMessage}> Barang berhasil ditambahkan </p>}
-            {error && <p className={Stuffaddstyles.StuffMessage}> gagal : {error.message} </p>}
         </form>
+        </>
     );
 }
 

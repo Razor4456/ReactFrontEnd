@@ -6,18 +6,16 @@
     top: 4%;
     left: 0;
     background-color: transparent;
-    // background-color: red;
 }
 .navbar {
-  top: 0;
-  left: 0;
-  height: 100vh;
-  width: 200px;
-  padding: 1rem;
-  background-color: #ffffff;
-  z-index: 1000;
-  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
-
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 200px;
+    padding: 1rem;
+    background-color: #ffffff;
+    z-index: 1000;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
 }
 
 .Urllist{
@@ -42,13 +40,17 @@
     font-family: 'Arial', sans-serif;
 }
 
+.Textheader{
+  color: #ffffff;
+  margin-top: -5px;
+}
+
 .FooterText{
     text-align: center;
     padding: 1rem 0;
-    background-color: #ff0202;
+    background-color: #f0f0f0;
     border-top: 1px solid #ddd;
     width: 100%;
-    margin-left: 13rem;
 }
 
 .Layoutstyle{
@@ -59,10 +61,10 @@
 }
 
 .ContentStyle{
-  text-align: 'center';
-  min-height: 825px;
-  line-height: 20px;
-  color: '#fff';
-  background-color: #ffffff;
+    text-align: 'center';
+    min-height: 825px;
+    line-height: 20px;
+    color: '#fff';
+    background-color: #ffffff;
 }
 
