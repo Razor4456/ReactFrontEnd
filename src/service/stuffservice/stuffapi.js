@@ -11,7 +11,7 @@ export const stuffApi = createApi({
             }),
         }),
         getStuffById: builder.query({
-            query: (id) => `GetStuffById/${id}`
+            query: (id) => `GetStuffId/${id}`
         }),
         addStuff:builder.mutation({
             query: (newStuff) => ({
@@ -30,4 +30,4 @@ export const stuffApi = createApi({
     }),
 });
 
-export const {useGetStuffQuery, useAddStuffMutation, useEditStuffMutation} = stuffApi
+export const {useGetStuffQuery, useAddStuffMutation, useEditStuffMutation, useGetStuffByIdQuery} = stuffApi

@@ -1,27 +1,38 @@
-import {React,useState} from "react";
-import { useEditStuffMutation } from "../../service/stuffservice/stuffapi";
+import {React,useEffect,useState} from "react";
+import { useEditStuffMutation, useGetStuffByIdQuery } from "../../service/stuffservice/stuffapi";
 import editStyle from "./stufftedit.module.scss";
-import { useParams } from "react-router-dom";
+import {useParams} from "react-router-dom";
 
-function EditStuff({StuffData}){
-    
+function EditStuff(){
+    const {id} = useParams();
     const {data: StuffData, isLoading: isFetching} = useGetStuffByIdQuery(id)
-    const [nama_barang,setNamaBarang] = useState( () => StuffData?.nama_barang || '');
-    const [jumlah_barang,setJumlahBarang] = useState( () => StuffData?.jumlah_barang ||'');
-    const [harga,setHargaBarang] = useState(  () => StuffData?.harga || '');
-    const [editStuff,{isLoading, isError, isSuccess}] = useEditStuffMutation('')
+    const [nama_barang,setNamaBarang] = useState('');
+    const [jumlah_barang,setJumlahBarang] = useState('');
+    const [harga,setHargaBarang] = useState('');
+    const [editStuff,{isLoading}] = useEditStuffMutation('')
+
+    console.log("StuffData",StuffData);
+    console.log("id",id);
+
+    useEffect(() => {
+        if(StuffData) {
+            setNamaBarang(StuffData.Data.nama_barang || '')
+            setJumlahBarang(StuffData.Data.jumlah_barang || '')
+            setHargaBarang(StuffData.Data.harga || '')
+        }
+    }, [StuffData]);
 
     const EditStuffHandler = async(e) =>{
         e.preventDefault();
 
         const updateData = {
             nama_barang,
-            jumlah_barang,
-            harga,
+            jumlah_barang: parseInt(jumlah_barang) ||0 ,
+            harga: parseInt(harga) ||0,
         };
 
         try{
-            await editStuff({id: StuffData.id, data: updateData});
+            await editStuff({id, data: updateData});
             alert('Barang berhasil Di Update');
         } catch (err) {
             alert('Gagal update Barang');
@@ -30,7 +41,7 @@ function EditStuff({StuffData}){
 
     return (
         <>
-        <h2 className={editStyle.Stufftitle}>Tambah Barang</h2>
+        <h2 className={editStyle.Stufftitle}>Edit Barang</h2>
         <form className={editStyle.StuffForm} onSubmit={EditStuffHandler}>
             <p>Nama Barang</p>
             <input
@@ -74,7 +85,7 @@ function EditStuff({StuffData}){
             />
             <div className={editStyle.parent}>
             <button className={editStyle.StuffButton} type="submit" disabled={isLoading}>
-                {isLoading ? 'Menambahkan...' : 'Tambah Barang'}
+                {isLoading ? 'Menambahkan...' : 'Edit Barang'}
             </button>
             </div>
         </form>
