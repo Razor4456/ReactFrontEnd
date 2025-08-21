@@ -3,6 +3,7 @@ import { useGetStuffQuery } from '../../service/stuffservice/stuffapi';
 import {Table } from 'antd';
 import {EditOutlined,DeleteOutlined} from '@ant-design/icons'
 import ListStyle from './stufflist.module.scss'
+import { useNavigate } from 'react-router-dom';
 
 
 
@@ -24,6 +25,13 @@ function StuffList() {
   useEffect(() => {
     refetch();
   },[refetch]);
+
+  const navigate = useNavigate();
+
+  const EditStuffHandler = (data) => {
+    console.log('Data Edit')
+    navigate(`/EditStuff/${data.id}`);
+  }
 
   const TableBarang = [
     {
@@ -49,13 +57,17 @@ function StuffList() {
     {
       title: 'Edit',
       width: 50,
-      dataIndex: 'harga' ,
+      dataIndex: 'Edit' ,
       fixed:'right',
       key: 'operation',
-      render: () => {
+      render: (_ ,data) => {
         return(      
-          <div className={ListStyle.ButtonEdit}>
-          <EditOutlined style = {{cursor: 'Pointer'}}/>
+          <div 
+            className={ListStyle.ButtonEdit}
+            onClick={() => EditStuffHandler(data)}
+            style = {{cursor: 'Pointer'}}
+          >
+          <EditOutlined />
           </div>
         )
       }
@@ -63,7 +75,7 @@ function StuffList() {
     {
       title: 'Delete',
       width: 50,
-      dataIndex: 'harga' ,
+      dataIndex: 'Delete' ,
       fixed:'right',
       key: 'operation',
       render: () => {

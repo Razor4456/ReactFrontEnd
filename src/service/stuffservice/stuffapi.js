@@ -8,8 +8,10 @@ export const stuffApi = createApi({
             query:(GetStuff) => ({
                 url: 'GetStuff',
                 method: 'GET',
-                body: GetStuff
             }),
+        }),
+        getStuffById: builder.query({
+            query: (id) => `GetStuffById/${id}`
         }),
         addStuff:builder.mutation({
             query: (newStuff) => ({
@@ -19,13 +21,13 @@ export const stuffApi = createApi({
             }),
         }),
         EditStuff:builder.mutation({
-            query: (editStuff) => ({
-                url: 'EditStuff',
+            query: ({id,data}) => ({
+                url: `EditStuff/${id}`,
                 method: 'PUT',
-                body: editStuff
+                body: data
             }),
         }),
     }),
 });
 
-export const {useGetStuffQuery, useAddStuffMutation} = stuffApi
+export const {useGetStuffQuery, useAddStuffMutation, useEditStuffMutation} = stuffApi

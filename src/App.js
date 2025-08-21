@@ -4,6 +4,7 @@ import HomePage from "./page/homepage/home-page";
 import NavStyle from "./navbar.module.scss"
 import AddStuff from "./components/stuff/stuff-add-component";
 import {Layout,Menu} from "antd"
+import EditStuff from "./components/stuff/stuff-edit-component";
 
 const {Header,Footer,Sider,Content} = Layout;
 
@@ -45,6 +46,7 @@ function App() {
                     <Route path="/" element={<HomePage />} />
                     <Route path="/Stuff" element={<StuffList />} />
                     <Route path="/AddStuff" element={<AddStuff />} />
+                    <Route path="/EditStuff/:id" element={<EditStuff />} />
                 </Routes>
             </Content>
         </Layout>

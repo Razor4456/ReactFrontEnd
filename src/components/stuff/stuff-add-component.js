@@ -6,7 +6,7 @@ import {Alert} from 'antd';
 function AddStuff() {
     const [nama_barang,setNamaBarang] = useState('');
     const [jumlah_barang,setJumlahBarang] = useState('');
-    const [harga,setHaBarang] = useState('');
+    const [harga,setHargaBarang] = useState('');
     const [addStuff,{isLoading}] = useAddStuffMutation('');
     const [successMsg,setSuccessMsg] = useState('');
     const [errorMsg,setErrorMsg] = useState('');
@@ -28,7 +28,7 @@ function AddStuff() {
             console.log('Barang')
             setNamaBarang('');
             setJumlahBarang('');
-            setHaBarang('');
+            setHargaBarang('');
         } catch (err) {
             console.log("message",'Gagal Menambahkan Barang');
             setErrorMsg('Gagal menambahkan barang')
@@ -80,7 +80,7 @@ function AddStuff() {
             onChange={(e => {
                 const value = e.target.value;
                 if(/^\d*$/.test(value)){
-                    setHaBarang(value);
+                    setHargaBarang(value);
                 }
             })}
             />
