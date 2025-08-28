@@ -71,23 +71,7 @@ function StuffList() {
           </div>
         )
       }
-    },
-    {
-      title: 'Delete',
-      width: 50,
-      dataIndex: 'Delete' ,
-      fixed:'right',
-      key: 'operation',
-      render: () => {
-        return(      
-          <div className={ListStyle.ButtonDelete}>
-          <DeleteOutlined style = {{cursor: 'Pointer'}}/>
-          </div>
-        )
-      }
-    },
-    
-
+    }
   ]
 
    const dataSource = data?.Data?.map((item) => ({
@@ -99,11 +83,15 @@ function StuffList() {
   if (error) return <p>Error: {error.message}</p>;
 
   return (
+    <>
+    <button className={ListStyle.BulkDelete}>Bulk Delete</button>
     <Table
     columns={TableBarang}
     dataSource={dataSource}
     rowSelection={rowSelection}
     />
+    </>
+    
   );
 };
 
