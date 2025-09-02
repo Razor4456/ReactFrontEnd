@@ -27,7 +27,14 @@ export const stuffApi = createApi({
                 body: data
             }),
         }),
+        DeletStuff:builder.mutation({
+            query: ({id}) => ({
+                url: `DeleteStuff`,
+                method: 'DELETE',
+                body: { id: id}
+            }),
+        }),
     }),
 });
 
-export const {useGetStuffQuery, useAddStuffMutation, useEditStuffMutation, useGetStuffByIdQuery} = stuffApi
+export const {useGetStuffQuery, useAddStuffMutation, useEditStuffMutation, useGetStuffByIdQuery,useDeletStuffMutation} = stuffApi

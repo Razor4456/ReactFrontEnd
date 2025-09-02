@@ -13,7 +13,8 @@ function EditStuff(){
     const [editStuff,{isLoading}] = useEditStuffMutation('')
     const [isVisibleModal,setIsVisibleModal] = useState(false);
     const [isVisibleModalError,setIsVisibleModalError] = useState(false);
-
+    const[errors,setErrors] = useState({});
+    
     console.log("StuffData",StuffData);
     console.log("id",id);
 
@@ -50,6 +51,22 @@ function EditStuff(){
         if (!nama_barang.trim()){
             newErrors.nama_barang = 'Nama Barang cannot be empy'
         }
+
+        if (!jumlah_barang.trim()) {
+            newErrors.jumlah_barang = "jumlah barang cannot be empty"
+        }  else if(!/^\d+$/.test(jumlah_barang))(
+            newErrors.jumlah_barang = "Only Number Can Be Input"
+        )
+
+        if (!harga.trim()) {
+            newErrors.harga = "Harga harus diisi";
+        } else if(!/^\d+$/.test(harga)) {
+            newErrors.harga = "only number"
+        }
+
+        setErrors(newErrors);
+        return Object.keys(newErrors).length === 0;
+
     }
 
     const hadleCloseModal = () => {
@@ -135,7 +152,10 @@ function EditStuff(){
             open = {isVisibleModal}
             onCancel = {hadleCloseModal}
             footer = {[
-                <Button className={editStyle.CloseButtonSuccess} key ="close" onClick={handleLink}>
+                <Button 
+                className={editStyle.CloseButtonSuccess} 
+                key ="close" 
+                onClick={handleLink}>
                     Tutup
                 </Button>
             ]}
