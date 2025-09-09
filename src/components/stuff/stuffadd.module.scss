@@ -46,10 +46,11 @@ cursor: pointer;
 }
 
 .smallAlert{
+    position: absolute;
     margin-left: 87%;
     left: -30px;
     text-align: center;
-    top: 3%;
+    top: 9%;
     right: 3%;
 
     .ant-alert-icon {

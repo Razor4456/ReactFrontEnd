@@ -15,7 +15,7 @@ function AddStuff() {
         e.preventDefault();
         setSuccessMsg('');
         setErrorMsg('');
-
+        
         try{
             await addStuff({
                 nama_barang,
@@ -23,8 +23,7 @@ function AddStuff() {
                 harga: parseInt(harga),
             }).unwrap();
 
-
-            setSuccessMsg('Barang Berhasil Di tambahkan')
+            setTimeout (()=> setSuccessMsg('Barang Berhasil Di tambahkan',3000))
             console.log('Barang')
             setNamaBarang('');
             setJumlahBarang('');

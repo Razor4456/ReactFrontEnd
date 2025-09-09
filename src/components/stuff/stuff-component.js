@@ -140,6 +140,7 @@ function StuffList() {
     columns={TableBarang}
     dataSource={dataSource}
     rowSelection={rowSelection}
+    pagination={{ pageSize: 5 }}
     />
   
     <Modal 
