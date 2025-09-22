@@ -3,7 +3,7 @@ import { useLoginMutation } from "../../service/loginservice/loginApi";
 import { Input,Button,Modal,Result } from "antd";
 import LoginStyle from "./login.module.scss";
 import { useNavigate } from "react-router-dom";
-import LoginBanner from '../../branch_snow_winter_1163785_1920x1080.jpg'
+import LoginBanner from '../../Desain tanpa judul.png'
 
 
 function LoginPage({setAuth}) {
@@ -25,8 +25,8 @@ function LoginPage({setAuth}) {
             setAuth(true)
             localStorage.setItem('auth','true')
             navigate('/')
-        } catch {
-            console.log("Gagal")
+        } catch(err) {
+            console.log("Gagal",err)
             setLoginfailed(true)
             setPassword('')
         }
@@ -34,16 +34,16 @@ function LoginPage({setAuth}) {
 
     const closeloginerror = () => {
         setLoginfailed(false)
-        window.location.href = '/login'
+        navigate('/Login')
     }
 
     return(
         <>
         <header className={LoginStyle.headercustome}>Halaman Login</header>
         
-        <img src={LoginBanner} alt="Login Banner" className={LoginStyle.LoginImage} />
+        <img src={LoginBanner} alt="Login Banner" className={LoginStyle.LoginImage}/>
 
-        <div className={LoginStyle.LoginWrapper}>
+        <form className={LoginStyle.LoginForm}>
         <div className={LoginStyle.LoginDiv}>
         <Input 
             className={LoginStyle.LoginInput}
@@ -58,16 +58,17 @@ function LoginPage({setAuth}) {
         <Button 
             onClick={handleLogin}
             className={LoginStyle.LoginButton} 
-            variant="solid"
+            color = "primary"
+            variant = "solid" 
         >
             Login
         </Button>
         </div>
-        </div>
+        </form>
         
         <Modal
-            className={LoginStyle.TitleModal}
-            title = "Success"
+            className={LoginStyle.LoginErrorModal}
+            title = "Failed"
             open = {LoginFailed}
             onCancel = {closeloginerror}
             footer = {[
