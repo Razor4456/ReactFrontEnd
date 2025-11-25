@@ -8,5 +8,3 @@ export const store = configureStore({
     middleware: (getDefaultMiddleware) => 
         getDefaultMiddleware().concat(stuffApi.middleware),
 });
-
-//test commit
